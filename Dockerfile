@@ -9,3 +9,5 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build /usr/src/app/build .
 
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
