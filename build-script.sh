@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set your project ID and service account key file path
-PROJECT_ID="bold-listener-320807"
+PROJECT_ID="safes-project"
 KEY_FILE="/Users/user/Downloads/bold-listener-320807.json"
 
 # Set the path to your source code and Dockerfile
@@ -10,7 +10,7 @@ git clone $REPO_URL
 cd counter-app
 
 # Authenticate with Google Cloud
-gcloud auth activate-service-account --key-file="$KEY_FILE" 
+gcloud auth login 
 gcloud config set project $PROJECT_ID
 
 # Trigger Cloud Build
