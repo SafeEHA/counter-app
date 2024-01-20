@@ -11,5 +11,6 @@ steps:
     - '--image=gcr.io/safes-project/my-image:latest'
     - '--platform=managed'
     - '--region=us-east1'
+    - '--port=80'
 options:
   logging: CLOUD_LOGGING_ONLY
