@@ -1,14 +1,13 @@
-steps:                                              
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-docker.pkg.dev/cloudrun/container:latest', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-docker.pkg.dev/cloudrun/container:latest']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/safes-project/my-image:latest', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/safes-project/my-image']
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
       - 'deploy'
       - 'my-cloudrun-service'
-      - '--image=gcr.io/safes-project/hello'
+      - '--image=gcr.io/safes-project/my-image:latest'
       - '--platform=managed'
       - '--region=us-east1'
 options:
