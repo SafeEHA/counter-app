@@ -1,13 +1,11 @@
-FROM node AS prod
-WORKDIR /app
+FROM node:14-alpine AS build
+WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm i
+RUN npm install
 COPY . .
-# RUN npm test - if you want to test before to build
 RUN npm run build
 
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
-COPY --from=prod /app/build .
-# run nginx with global directives and daemon off
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=build /usr/src/app/build .
+

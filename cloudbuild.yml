@@ -1,0 +1,17 @@
+steps:                                              
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', 'us-docker.pkg.dev/cloudrun/container/']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'us-docker.pkg.dev/cloudrun/container/hello', 'gcr.io/bold-listener-320807/hello']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/bold-listener-320807/hello']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'my-cloudrun-service'
+      - '--image=gcr.io/bold-listener-320807/hello'
+      - '--platform=managed'
+      - '--region=us-east1'
+options:
+  logging: CLOUD_LOGGING_ONLY
