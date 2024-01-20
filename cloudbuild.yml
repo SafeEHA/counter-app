@@ -2,9 +2,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-docker.pkg.dev/cloudrun/container:latest', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'us-docker.pkg.dev/cloudrun/container/hello', 'gcr.io/safes-project/hello']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/safes-project/hello']
+    args: ['push', 'us-docker.pkg.dev/cloudrun/container:latest']
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
