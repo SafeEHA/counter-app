@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  react-app:
+    image: safeeha/counter-app  
+    ports:
+      - "80:80"
