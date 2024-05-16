@@ -4,4 +4,4 @@ services:
   react-app:
     image: safeeha/counter-app  
     ports:
-      - "82:80"
+      - "3001:3000"
