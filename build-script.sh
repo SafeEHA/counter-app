@@ -27,7 +27,7 @@ BUILD_ID=$(gcloud builds list --limit=1 --format="value(ID)")
 
 
 echo "Removing existing files in the GCS bucket directory..."
-gsutil -m rm -r "gs://${BUCKET_NAME}/${BUCKET_DIRECTORY}/**"
+gsutil -m rm -r "gs://${BUCKET_NAME}/${BUCKET_DIRECTORY}/"
 
 echo "Copying source code to GCS..."
 gsutil cp "${ZIP_FILE}" "gs://${BUCKET_NAME}/${BUCKET_DIRECTORY}/"
