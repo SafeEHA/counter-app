@@ -1,5 +1,5 @@
-data "google_client_config" "default" {
-}
+data "google_client_config" "default" {}
+
 provider "kubernetes" {
   host                   = "https://${google_container_cluster.default.endpoint}"
   token                  = data.google_client_config.default.access_token
@@ -13,31 +13,31 @@ provider "kubernetes" {
 
 resource "kubernetes_deployment_v1" "default" {
   metadata {
-    name = "counter-app-deployment"
+    name = "example-hello-app-deployment"
   }
 
   spec {
     selector {
       match_labels = {
-        app = "counter-app"
+        app = "hello-app"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "counter-app"
+          app = "hello-app"
         }
       }
 
       spec {
         container {
-          image = "safeeha/counter-app:latest"
-          name  = "counter-app-container"
+          image = "us-docker.pkg.dev/google-samples/containers/gke/hello-app:2.0"
+          name  = "hello-app-container"
 
           port {
             container_port = 8080
-            name           = "counter-app-svc"
+            name           = "hello-app-svc"
           }
 
           security_context {
@@ -54,7 +54,7 @@ resource "kubernetes_deployment_v1" "default" {
           liveness_probe {
             http_get {
               path = "/"
-              port = "counter-app-svc"
+              port = "hello-app-svc"
 
               http_header {
                 name  = "X-Custom-Header"
@@ -90,10 +90,10 @@ resource "kubernetes_deployment_v1" "default" {
 
 resource "kubernetes_service_v1" "default" {
   metadata {
-    name = "counter-app-loadbalancer"
-    annotations = {
-     
-    }
+    name = "example-hello-app-loadbalancer"
+    # annotations = {
+    #   "networking.gke.io/load-balancer-type" = "Internal" # Remove to create an external loadbalancer
+    # }
   }
 
   spec {

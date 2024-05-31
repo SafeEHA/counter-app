@@ -53,7 +53,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   function increaseBy5() {
-      setCount(count + 5);
+      setCount(count + 2);
     }
 
   function resetCount() {
@@ -61,7 +61,7 @@ function App() {
   }
 
   function decreaseBy5() {
-    setCount(count - 5);
+    setCount(count - 2);
   }
   
     return (
