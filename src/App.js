@@ -73,13 +73,13 @@ function App() {
         </div>
         <div style={styles.buttons}>
           <div style={styles.button} onClick={increaseBy5}>
-            <h1 style={styles.h1}>+5</h1>
+            <h1 style={styles.h1}>+2</h1>
             </div>
           <div onClick={resetCount}>
             <h1>Reset</h1>
           </div>
             <div style={styles.button} onClick={decreaseBy5}>
-              <h1 style={styles.h1}>-5</h1></div>
+              <h1 style={styles.h1}>-2</h1></div>
         </div>
         </div>
       </div>
